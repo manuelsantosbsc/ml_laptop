@@ -53,7 +53,7 @@ if st.button('Predecir Precio'):
     })
     
     # Asegúrate de que el orden de las columnas en input_data coincide con el orden que se usó en el entrenamiento
-    input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
+    #input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
 
     # Escalar los datos de entrada usando el scaler previamente entrenado
     input_scaled = scaler.transform(input_data)
