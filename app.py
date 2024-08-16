@@ -38,7 +38,7 @@ if st.button('Predecir Precio'):
     ips = 1 if ips == "Yes" else 0
     
     # Procesar resolución
-    screen_width = int(resolution.split('x')[0])
+    screen_width = float(resolution.split('x')[0])
     
      # Crear DataFrame para los datos de entrada
     input_data = pd.DataFrame({
