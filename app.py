@@ -31,16 +31,12 @@ screen_width=0
 #Prediccion
 
 if st.button('Predecir Precio'):
-    if touchscreen == "Yes":
-        touchscreen = 1
-    else:
-        touchscreen = 0
-    if ips == "Yes":
-        ips = 1
-    else:
-        ips = 0
-      
+    # Convertir entradas categóricas a numéricas
+    touchscreen = 1 if touchscreen == "Yes" else 0
+    ips = 1 if ips == "Yes" else 0
+       
     screen_width = int(resolution.split('x')[0])
+    
     input_data = pd.DataFrame([[ssd, ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
                           columns=['SSD_GB', 'Cpu_hgz', 'RAM', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
   #  scaler = StandardScaler()
@@ -56,6 +52,6 @@ if st.button('Predecir Precio'):
 
 
     # Mostrar predicción
-    st.write(f'Precio predecido: {prediction} euros')
+    st.write(f'Precio predecido:euros')
 
   
