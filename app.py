@@ -66,7 +66,7 @@ if st.button('Predecir Precio'):
     # Mostrar la predicción
   ##  st.write(f'Precio predecido: {prediction[0]:.2f} euros')
     # Verificar si hay valores NaN o infinitos
-    if  np.isfinite(input_data).all():
+    if input_data.isnull().values.any() or not np.isfinite(input_data).all():
         st.error("Los datos de entrada contienen valores NaN o infinitos.")
     else:
         # Escalar los datos de entrada usando el scaler previamente entrenado
