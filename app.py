@@ -71,7 +71,7 @@ if st.button('Predecir Precio'):
     else:
         # Escalar los datos de entrada usando el scaler previamente entrenado
         try:
-            input_scaled = scaler.transform(input_data)
+            input_scaled = scaler.fit_transform(input_data)
 
             # Realizar la predicción
             prediction = modelo.predict(input_scaled)
