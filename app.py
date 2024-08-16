@@ -44,9 +44,16 @@ if st.button('Predecir Precio'):
     input_data = pd.DataFrame([[ssd, ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
                           columns=['SSD_GB', 'Cpu_hgz', 'RAM', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
   #  scaler = StandardScaler()
-    input_scaled = scaler.fit_transform(input_data)
+   # input_scaled = scaler.fit_transform(input_data)
    # Realizar predicción
+   # prediction = modelo.predict(input_scaled)
+   
+    # Escalar los datos de entrada usando el scaler previamente entrenado
+    input_scaled = scaler.transform(input_data)
+
+    # Realizar la predicción
     prediction = modelo.predict(input_scaled)
+
 
     # Mostrar predicción
     st.write(f'Precio predecido: {prediction[0]:.2f} euros')
