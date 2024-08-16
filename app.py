@@ -18,8 +18,8 @@ df = pickle.load(open('df.pkl', 'rb'))
 
 st.write('Web para predecir precio de una Laptop')
 
-ssd = st.selectbox('Disco SSD(en GB)',df['HDD_GB'].unique())
-hdd = st.selectbox('Disco HDD(in GB)',df['SSD_GB'].unique())
+ssd = st.selectbox('Disco SSD(en GB)',df['SSD_GB'].unique())
+hdd = st.selectbox('Disco HDD(in GB)',df['HDD_GB'].unique())
 ghz = st.selectbox("CPU GHz", df['Cpu_hgz'].unique())
 ram = st.selectbox("Ram(en GB)",df['Ram'].unique())
 weight = st.selectbox("Peso de la Laptop",df['Weight'].unique())
@@ -56,6 +56,6 @@ if st.button('Predecir Precio'):
 
 
     # Mostrar predicción
-    st.write(f'Precio predecido: {prediction[0]:.2f} euros')
+    st.write(f'Precio predecido: {prediction} euros')
 
   
