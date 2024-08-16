@@ -5,7 +5,15 @@ import numpy as np
 import pickle
 from sklearn.preprocessing import StandardScaler
 
-modelo = pickle.load(open('modelo.pkl', 'rb'))
+# Cargar el modelo entrenado
+with open('modelo_optimizado.pkl', 'rb') as file:
+    modelo = pickle.load(file)
+
+# Cargar el scaler entrenado
+with open('scaler.pkl', 'rb') as file:
+    scaler = pickle.load(file)
+    
+#modelo = pickle.load(open('modelo.pkl', 'rb'))
 df = pickle.load(open('df.pkl', 'rb'))
 
 st.write('Web para predecir precio de una Laptop')
@@ -35,7 +43,7 @@ if st.button('Predecir Precio'):
     screen_width = int(resolution.split('x')[0])
     input_data = pd.DataFrame([[ssd, ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
                           columns=['SSD_GB', 'Cpu_hgz', 'RAM', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
-    scaler = StandardScaler()
+  #  scaler = StandardScaler()
     input_scaled = scaler.fit_transform(input_data)
    # Realizar predicción
     prediction = modelo.predict(input_scaled)
