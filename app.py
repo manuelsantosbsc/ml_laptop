@@ -37,18 +37,7 @@ if st.button('Predecir Precio'):
                           columns=['SSD_GB', 'Cpu_hgz', 'RAM', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
     scaler = StandardScaler()
     input_scaled = scaler.fit_transform(inputn_data)
- input_data = pd.DataFrame({
-   'SSD_GB': [128.0],
-   'Cpu_hgz': [2.3],
-    'Ram': [8.0],
-   'Weight':[1.37],
-   'IPS':[1],
-   'Touchscreen':[0],
-   'screen_width':[2560.0],
-   'HDD_GB':[0.0],
-   'Inches':[13.3]
-
-})
+   input_data = pd.DataFrame({'SSD_GB': [128.0],'Cpu_hgz': [2.3], 'Ram': [8.0],  'Weight':[1.37],   'IPS':[1],   'Touchscreen':[0],   'screen_width':[2560.0],   'HDD_GB':[0.0],  'Inches':[13.3]})
     # Realizar predicción
     prediction = modelo.predict(input_data)
 
