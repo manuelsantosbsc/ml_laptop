@@ -35,7 +35,7 @@ if st.button('Predecir Precio'):
     touchscreen = 1 if touchscreen == "Yes" else 0
     ips = 1 if ips == "Yes" else 0
        
-    screen_width = int(resolution.split('x')[0])
+    screen_width = float(resolution.split('x')[0])
     
     input_data = pd.DataFrame([[ssd, cpu_ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
                           columns=['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
