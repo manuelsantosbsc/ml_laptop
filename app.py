@@ -53,13 +53,13 @@ if st.button('Predecir Precio'):
     })
     
     # Asegúrate de que el orden de las columnas en input_data coincide con el orden que se usó en el entrenamiento
-    #input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
+    input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
 
     # Escalar los datos de entrada usando el scaler previamente entrenado
-    #input_scaled = scaler.transform(input_data)
+    input_scaled = scaler.transform(input_data)
 
     # Realizar la predicción
-    prediction = modelo.predict(input_data)
+    prediction = modelo.predict(input_scaled)
 
     # Mostrar la predicción
     st.write(f'Precio predecido: {prediction[0]:.2f} euros')
