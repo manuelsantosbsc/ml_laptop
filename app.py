@@ -53,14 +53,29 @@ if st.button('Predecir Precio'):
     })
     
     # Asegúrate de que el orden de las columnas en input_data coincide con el orden que se usó en el entrenamiento
-    input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
+   ## input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
 
     # Escalar los datos de entrada usando el scaler previamente entrenado
     
-    input_scaled = scaler.fit_transform(input_data)
+  ##  input_scaled = scaler.fit_transform(input_data)
 
     # Realizar la predicción
-    prediction = modelo.predict(input_scaled)
+  ##  prediction = modelo.predict(input_scaled)
 
     # Mostrar la predicción
-    st.write(f'Precio predecido: {prediction[0]:.2f} euros')
+  ##  st.write(f'Precio predecido: {prediction[0]:.2f} euros')
+    # Verificar si hay valores NaN o infinitos
+    if input_data.isnull().values.any() or not np.isfinite(input_data).all():
+        st.error("Los datos de entrada contienen valores NaN o infinitos.")
+    else:
+        # Escalar los datos de entrada usando el scaler previamente entrenado
+        try:
+            input_scaled = scaler.transform(input_data)
+
+            # Realizar la predicción
+            prediction = modelo.predict(input_scaled)
+
+            # Mostrar la predicción
+            st.write(f'Precio predecido: {prediction[0]:.2f} euros')
+        except Exception as e:
+            st.error(f"Error al realizar la predicción: {str(e)}")
