@@ -11,7 +11,7 @@ df = pickle.load(open('df.pkl', 'rb'))
 
 ssd = st.selectbox('Disco SSD(en GB)',df['HDD_GB'].unique())
 hdd = st.selectbox('Disco HDD(in GB)',df['SSD_GB'].unique())
-ghz = st.selectbox("CPU GHz", df['CPU_GHz'].unique())
+ghz = st.selectbox("CPU GHz", df['Cpu_hgz'].unique())
 ram = st.selectbox("Ram(en GB)",df['Ram'].unique())
 weight = st.selectbox("Peso de la Laptop",df['Weight'].unique())
 touchscreen = st.selectbox("Pantalla TouchScreen", ['No', 'Yes'])
