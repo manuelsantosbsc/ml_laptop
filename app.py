@@ -5,7 +5,7 @@ import numpy as np
 import pickle
 from sklearn.preprocessing import StandardScaler
 
-pipe = pickle.load(open('pipe.pkl', 'rb'))
+pipe = pickle.load(open('modelo.pkl', 'rb'))
 df = pickle.load(open('df.pkl', 'rb'))
 
 company = st.selectbox('Brand', df['Company'].unique())
