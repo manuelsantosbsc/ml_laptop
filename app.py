@@ -1,7 +1,5 @@
-
 import streamlit as st
 import pandas as pd
-import numpy as np
 import pickle
 from sklearn.preprocessing import StandardScaler
 
@@ -12,46 +10,44 @@ with open('modelo_optimizado.pkl', 'rb') as file:
 # Cargar el scaler entrenado
 with open('scaler.pkl', 'rb') as file:
     scaler = pickle.load(file)
-    
-#modelo = pickle.load(open('modelo.pkl', 'rb'))
-df = pickle.load(open('df.pkl', 'rb'))
+
+# Cargar el DataFrame desde un archivo .pkl
+df = pd.read_pickle('df.pkl')  # Asegúrate de que este archivo contiene un DataFrame
 
 st.write('Web para predecir precio de una Laptop')
 
-ssd = st.selectbox('Disco SSD(en GB)',df['SSD_GB'].unique())
-hdd = st.selectbox('Disco HDD(in GB)',df['HDD_GB'].unique())
+# Crear selectboxes para la entrada de datos
+ssd = st.selectbox('Disco SSD (en GB)', df['SSD_GB'].unique())
+hdd = st.selectbox('Disco HDD (en GB)', df['HDD_GB'].unique())
 cpu_ghz = st.selectbox("CPU GHz", df['Cpu_hgz'].unique())
-ram = st.selectbox("Ram(en GB)",df['Ram'].unique())
-weight = st.selectbox("Peso de la Laptop",df['Weight'].unique())
+ram = st.selectbox("Ram (en GB)", df['Ram'].unique())
+weight = st.selectbox("Peso de la Laptop (en kg)", df['Weight'].unique())
 touchscreen = st.selectbox("Pantalla TouchScreen", ['No', 'Yes'])
 ips = st.selectbox("Pantalla IPS", ['No', 'Yes'])
-resolution = st.selectbox(' Resolucion de la pantalla',['1920x1080','1366x768','1600x900','3840x2160','3200x1800','2880x1800','2560x1600','2560x1440','2304x1440'])
-inches = st.selectbox('Tamaño de pantalla',df['Inches'].unique())
-screen_width=0
-#Prediccion
+resolution = st.selectbox('Resolución de la pantalla', ['1920x1080', '1366x768', '1600x900', '3840x2160', '3200x1800', '2880x1800', '2560x1600', '2560x1440', '2304x1440'])
+inches = st.selectbox('Tamaño de pantalla (en pulgadas)', df['Inches'].unique())
 
+# Variable de ancho de pantalla (si es necesario, de lo contrario, puedes eliminar esta línea)
+screen_width = 0
+
+# Predicción
 if st.button('Predecir Precio'):
     # Convertir entradas categóricas a numéricas
     touchscreen = 1 if touchscreen == "Yes" else 0
     ips = 1 if ips == "Yes" else 0
-       
-    screen_width = float(resolution.split('x')[0])
     
+    # Procesar resolución
+    screen_width = int(resolution.split('x')[0])
+    
+    # Crear DataFrame para los datos de entrada
     input_data = pd.DataFrame([[ssd, cpu_ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
-                          columns=['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
-  #  scaler = StandardScaler()
-   # input_scaled = scaler.fit_transform(input_data)
-   # Realizar predicción
-   # prediction = modelo.predict(input_scaled)
-   
+                              columns=['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
+    
     # Escalar los datos de entrada usando el scaler previamente entrenado
     input_scaled = scaler.transform(input_data)
 
     # Realizar la predicción
     prediction = modelo.predict(input_scaled)
 
-
-    # Mostrar predicción
-    st.write(f'Precio predecido:euros')
-
-  
+    # Mostrar la predicción
+    st.write(f'Precio predecido: {prediction[0]:.2f} euros')
