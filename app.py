@@ -52,8 +52,7 @@ if st.button('Predecir Precio'):
         'HDD_GB': [hdd],
         'Inches': [inches]
     })
-    st.write(screen_width)
-    # Asegúrate de que el orden de las columnas en input_data coincide con el orden que se usó en el entrenamiento
+   # Asegúrate de que el orden de las columnas en input_data coincide con el orden que se usó en el entrenamiento
    ## input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
 
     # Escalar los datos de entrada usando el scaler previamente entrenado
@@ -67,7 +66,7 @@ if st.button('Predecir Precio'):
   ##  st.write(f'Precio predecido: {prediction[0]:.2f} euros')
     # Verificar si hay valores NaN o infinitos
     if input_data.isnull().values.any() :
-        st.error("Los datos de entrada contienen valores NaN o infinitos.")
+        st.error("Los datos de entrada contienen valores NaN")
     else:
         # Escalar los datos de entrada usando el scaler previamente entrenado
         try:
