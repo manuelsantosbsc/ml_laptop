@@ -56,7 +56,8 @@ if st.button('Predecir Precio'):
     input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
 
     # Escalar los datos de entrada usando el scaler previamente entrenado
-    input_scaled = scaler.transform(input_data)
+    
+    input_scaled = scaler.fit_transform(input_data)
 
     # Realizar la predicción
     prediction = modelo.predict(input_scaled)
