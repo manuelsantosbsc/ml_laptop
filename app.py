@@ -38,7 +38,7 @@ if st.button('Predecir Precio'):
     input_scaled = scaler.fit_transform(input_data)
 
     # Realizar predicción
-    prediction = modelo.predict(input_data )
+    prediction = modelo.predict( input_scaled)
 
     # Mostrar predicción
     st.write(f'Precio predecido: {prediction[0]:.2f} euros')
