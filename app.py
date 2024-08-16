@@ -20,7 +20,7 @@ st.write('Web para predecir precio de una Laptop')
 
 ssd = st.selectbox('Disco SSD(en GB)',df['SSD_GB'].unique())
 hdd = st.selectbox('Disco HDD(in GB)',df['HDD_GB'].unique())
-ghz = st.selectbox("CPU GHz", df['Cpu_hgz'].unique())
+cpu_ghz = st.selectbox("CPU GHz", df['Cpu_hgz'].unique())
 ram = st.selectbox("Ram(en GB)",df['Ram'].unique())
 weight = st.selectbox("Peso de la Laptop",df['Weight'].unique())
 touchscreen = st.selectbox("Pantalla TouchScreen", ['No', 'Yes'])
@@ -37,7 +37,7 @@ if st.button('Predecir Precio'):
        
     screen_width = int(resolution.split('x')[0])
     
-    input_data = pd.DataFrame([[ssd, ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
+    input_data = pd.DataFrame([[ssd, cpu_ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
                           columns=['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
   #  scaler = StandardScaler()
    # input_scaled = scaler.fit_transform(input_data)
