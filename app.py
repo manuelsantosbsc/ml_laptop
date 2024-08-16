@@ -39,10 +39,22 @@ if st.button('Predecir Precio'):
     # Procesar resolución
     screen_width = int(resolution.split('x')[0])
     
-    # Crear DataFrame para los datos de entrada
-    input_data = pd.DataFrame([[ssd, cpu_ghz, ram, weight, ips, touchscreen, screen_width, hdd, inches]],
-                              columns=['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches'])
+     # Crear DataFrame para los datos de entrada
+    input_data = pd.DataFrame({
+        'SSD_GB': [ssd],
+        'Cpu_hgz': [cpu_ghz],
+        'Ram': [ram],
+        'Weight': [weight],
+        'IPS': [ips],
+        'Touchscreen': [touchscreen],
+        'screen_width': [screen_width],
+        'HDD_GB': [hdd],
+        'Inches': [inches]
+    })
     
+    # Asegúrate de que el orden de las columnas en input_data coincide con el orden que se usó en el entrenamiento
+    input_data = input_data[['SSD_GB', 'Cpu_hgz', 'Ram', 'Weight', 'IPS', 'Touchscreen', 'screen_width', 'HDD_GB', 'Inches']]
+
     # Escalar los datos de entrada usando el scaler previamente entrenado
     input_scaled = scaler.transform(input_data)
 
