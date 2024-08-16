@@ -8,21 +8,16 @@ from sklearn.preprocessing import StandardScaler
 pipe = pickle.load(open('modelo.pkl', 'rb'))
 df = pickle.load(open('df.pkl', 'rb'))
 
-company = st.selectbox('Brand', df['Company'].unique())
-company = st.selectbox('Brand', df['Company'].unique())
-lap_type = st.selectbox("Type", df['TypeName'].unique())
-ram = st.selectbox("Ram(in GB)",df['Ram'].unique())
-weight = st.selectbox("Weight of the Laptop",df['Weight'].unique())
+
+ssd = st.selectbox('Disco SSD(en GB)',df['HDD_GB'].unique())
+hdd = st.selectbox('Disco HDD(in GB)',df['SSD_GB'].unique())
 ghz = st.selectbox("CPU GHz", df['CPU_GHz'].unique())
-touchscreen = st.selectbox("TouchScreen", ['No', 'Yes'])
-ips = st.selectbox("IPS", ['No', 'Yes'])
-inches = st.selectbox('Screen Size',df['Inches'].unique())
-resolution = st.selectbox('Screen Resolution',['1920x1080','1366x768','1600x900','3840x2160','3200x1800','2880x1800','2560x1600','2560x1440','2304x1440'])
-cpu = st.selectbox('CPU',df['Cpu_brand'].unique())
-ssd = st.selectbox('SSD(in GB)',df['HDD_GB'].unique())
-hdd = st.selectbox('HDD(in GB)',df['SSD_GB'].unique())
-gpu = st.selectbox('GPU',df['Gpu_brand'].unique())
-os = st.selectbox('OS',df['os'].unique())
+ram = st.selectbox("Ram(en GB)",df['Ram'].unique())
+weight = st.selectbox("Peso de la Laptop",df['Weight'].unique())
+touchscreen = st.selectbox("Pantalla TouchScreen", ['No', 'Yes'])
+ips = st.selectbox("Pantalla IPS", ['No', 'Yes'])
+resolution = st.selectbox(' Resolucion de la pantalla',['1920x1080','1366x768','1600x900','3840x2160','3200x1800','2880x1800','2560x1600','2560x1440','2304x1440'])
+inches = st.selectbox('Tamaño de pantalla',df['Inches'].unique())
 screen_width=0
 #Prediccion
 
